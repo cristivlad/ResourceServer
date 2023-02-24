@@ -1,6 +1,7 @@
 package com.example.resourceserver.controllers;
 
-import org.springframework.security.access.annotation.Secured;
+import com.example.resourceserver.response.UserRest;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,5 +18,11 @@ public class UsersController {
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable String id) {
         return "Deleted user with id: " + id;
+    }
+
+    @PostAuthorize("returnObject.userId() == #id")
+    @GetMapping("/{id}")
+    public UserRest getUser(@PathVariable String id) {
+        return new UserRest("test", "last", id);
     }
 }

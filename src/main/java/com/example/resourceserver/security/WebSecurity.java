@@ -26,6 +26,3 @@ public class WebSecurity {
         return httpRequest.build();
     }
 }
-
-
-// nu sunt platitor de tva; facturez fara tva acum
